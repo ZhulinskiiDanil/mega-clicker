@@ -1,0 +1,126 @@
+$one: calc(1vw + 5vh);
+$contentHeight: 3em;
+
+.item {
+  z-index: 1;
+  flex-shrink: 0;
+  display: flex;
+  gap: .5em;
+  
+  position: relative;
+  min-width: 9em;
+
+  font-size: calc($one * .5);
+  background: rgba(0, 0, 0, .6);
+  padding: .3em;
+  box-shadow: 0 0 2em 0 rgba(0, 0, 0, 1);
+  border: 1px solid transparent;
+  overflow: hidden;
+  transition: 1s ease;
+  
+  user-select: none;
+  -webkit-user-drag: none;
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    left: -50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0) rotate(45deg);
+    width: .2em;
+    height: 300%;
+    background: white;
+    opacity: .2;
+    transition: 1s ease;
+  }
+
+  &::before {
+    width: .6em;
+    opacity: .8;
+    transition-delay: .2s;
+  }
+
+  .taked {
+    position: absolute;
+    right: -100%;
+    top: 0;
+    transform: skewX(15deg) translate3d(.5em, 0, 0);
+    padding: .2em 1.2em .2em .8em;
+    font-size: .5em;
+    background: #ff8f33;
+    font-weight: 500;
+    letter-spacing: .05em;
+    transition: 1s ease;
+  }
+
+  &.active {
+    border-color: #ff8f33;
+    box-shadow: 0 0 3em 0 rgba(255, 142, 49, 0.5);
+    background: rgba(97, 53, 18, 0.6);
+    
+    .taked {
+      right: 0;
+    }
+
+    &::after,
+    &::before {
+      left: 150%;
+    }
+
+    img.image {
+      filter: drop-shadow(0 0 1em rgb(238, 255, 0));
+    }
+
+    .data .tags .tag {
+      background: #ff943c;
+    }
+  }
+
+  img.image {
+    flex-shrink: 0;
+    height: $contentHeight;
+    width: 3em;
+    object-fit: contain;
+    filter: drop-shadow(0 0 1em rgba(255, 255, 255, 0.6));
+
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .data {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: $contentHeight;
+    width: 100%;
+
+    .title {
+      margin-top: auto;
+      font-size: .5em;
+    }
+  
+    .subtitle {
+      font-size: .4em;
+      opacity: .5;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: auto;
+      gap: .2em;
+      
+      .tag {
+        font-size: .35em;
+        font-weight: 300;
+        letter-spacing: .04em;
+        background: rgba(120, 120, 120, .5);
+        padding: .25em .6em .2em;
+        border-radius: 2em;
+        line-height: 1;
+        transition: 1s ease;
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+.input {
+  background: #eee;
+  color: #222;
+  border: none;
+  outline: none;
+  padding: 4px 8px;
+  border-radius: 5px;
+  user-select: none;
+  transition: .2s ease;
+  cursor: pointer;
+
+  &.hidden {
+    display: none;
+  }
+
+  &_default {
+    
+  }
+
+  &_primary {
+    background: #222;
+    color: white;
+  }
+
+  &_white {
+    background: white;
+    color: #222;
+    box-shadow: 0 0 20px 0;
+  }
+
+  &.fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

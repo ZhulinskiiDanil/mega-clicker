@@ -1,0 +1,10 @@
+$one: calc(1vw + 5vh);
+.footer {
+  font-size: calc($one * .5);
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1em;
+}

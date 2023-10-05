@@ -1,0 +1,66 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "baseUrl": ".",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"],
+
+      // Public
+      "@public/*": ["./public/*"],
+
+      // FSD
+      "@entities/*": ["./src/entities/*"],
+      "@features/*": ["./src/features/*"],
+      "@widgets/*": ["./src/widgets/*"],
+      "@shared/*": ["./src/shared/*"],
+
+      // Components
+      "@components/*": ["./src/components/*"],
+      "@svg/*": ["./src/shared/svg/*"],
+      "@ui/*": ["./src/shared/ui/*"],
+
+      // Hooks
+      "@useClientRequest":  ["./src/shared/hooks/useClientRequest"],
+      "@hooks/*": ["./src/shared/hooks/*"],
+
+      // libs
+      "@layout": ["./src/shared/libs/layout/index"],
+      "@pages-router": ["./src/shared/libs/pages-router/index"],
+
+      // Common
+      "@constants/*": ["./src/common/constants/*"],
+      "@funcs/*": ["./src/common/funcs/*"],
+      "@layout/*": ["./src/shared/layout/*"],
+
+      // Pages
+      "@pages": ["./src/common/constants/pages/index"],
+
+      // Clases
+      "@clases/*": ["./src/common/clases/*"],
+
+      // TS
+      "@ts/*": ["./src/ts/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
