@@ -13,8 +13,6 @@ export function useClickableScroll<T>(
     let lastMouseEvent: MouseEvent | null = null
 
     function onScroll() {
-      console.log("Scroll");
-
       if (elm) {
         if (cb instanceof Function) {
           const scrollLeft = elm.scrollLeft >= 0 ? elm.scrollLeft : 0
