@@ -3,12 +3,50 @@ $one: calc(1vw + 5vh);
   font-size: calc($one * .5);
   
   flex-shrink: 0;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: .1em;
   
-  transition: .15s ease;
+  transform: scale(.9);
+  opacity: .8;
+
+  transition: 1s ease;
+
+  &.active {
+    transform: scale(1);
+    opacity: 1;
+
+    .content {
+      background: rgba(255, 167, 67, 0.5);
+      box-shadow: 0 0 1.5em 0 rgba(255, 195, 32, 0.795);
+      border-color: #ff9e20;
+    }
+
+    .from {
+      background: #ff8c2e;
+      font-weight: bold;
+      opacity: 1;
+    }
+  }
+
+  .from {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate3d(-50%, -50%, 0);
+    
+    min-width: 3em;
+    padding: .2em .5em;
+    border-radius: 1em;
+
+    background: black;
+    font-size: .5em;
+    opacity: .4;
+
+    transition: .3s ease;
+  }
 
   .line {
     height: .3em;
@@ -23,6 +61,8 @@ $one: calc(1vw + 5vh);
     width: 2em;
     padding: .3em;
     background: rgba(0, 0, 0, .15);
+    border: 1px solid transparent;
+    transition: 1s ease;
 
     &:hover {
       background: rgba(0, 0, 0, .3);

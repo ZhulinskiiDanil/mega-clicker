@@ -1,4 +1,6 @@
 $one: calc(1vw + 5vh);
+$itemPaddingX: 1em;
+
 .progress {
   display: flex;
   flex-direction: column;
@@ -10,11 +12,16 @@ $one: calc(1vw + 5vh);
   .items {
     display: flex;
     align-items: center;
-    padding: 0 1em;
+    padding: 0 $itemPaddingX;
     gap: 1em;
   }
 
   .fill {
+    $fillProgress: calc(
+      100% * var(--value) + $itemPaddingX * 2 - ($itemPaddingX * 2 * var(--value))
+      + (100% * var(--value)) / var(--itemsCount)
+    );
+
     z-index: 0;
     position: relative;
     background: #1e1e1e;
@@ -48,7 +55,7 @@ $one: calc(1vw + 5vh);
       left: 0;
       top: 0;
       height: 100%;
-      width: var(--percent);
+      width: $fillProgress;
       background: linear-gradient(
         to top, #ffac5f, #b44320
       );
@@ -59,7 +66,7 @@ $one: calc(1vw + 5vh);
       content: '';
       position: absolute;
       z-index: 2;
-      left: var(--percent);
+      left: $fillProgress;
       top: 0;
       height: 100%;
       transform: translate3d(-100%, 0, 0);
@@ -73,7 +80,7 @@ $one: calc(1vw + 5vh);
     img {
       position: absolute;
       z-index: -1;
-      left: var(--percent);
+      left: $fillProgress;
       height: 3em;
       width: 5em;
       top: 50%;

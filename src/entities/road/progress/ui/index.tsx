@@ -20,13 +20,13 @@ export function Progress({ from, to }: ProgressProps) {
   const fromToDiff = Math.abs(from - to)
   const clicksDiff = clicks - from
   const value = clicks > from ? clicksDiff / fromToDiff : 0
-  const percent = 100 * value > 100 ? 100 : 100 * value
 
   useEffect(() => {
-    const elm  = fillRef.current
+    const fill  = fillRef.current
 
-    if (elm) {
-      elm.style.setProperty('--percent', percent + '%')
+    if (fill) {
+      fill.style.setProperty('--value', String(value > 1 ? 1 : value))
+      fill.style.setProperty('--itemsCount', String(10))
     }
   }, [value, fillRef])
 
@@ -44,23 +44,16 @@ export function Progress({ from, to }: ProgressProps) {
   
   return <div className={styles.progress}>
     <div className={styles.items}>
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
+      {Array(10).fill(null).map((item, index) => {
+        const fromActive = from + fromToDiff * (index / 10)
+
+        return <Item key={fromActive || 1} from={fromActive || 1} />
+      })}
     </div>
     <div ref={fillRef} className={[
       styles.fill,
-      moved && percent > 0 && styles.moved,
-      percent === 100 && styles.filled
+      moved && value > 0 && styles.moved,
+      value === 1 && styles.filled
     ].join(' ')}>
       <img src="/gifs/sparks.gif" />
       <img src="/gifs/sparks.gif" />
