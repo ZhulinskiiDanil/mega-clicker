@@ -1,5 +1,8 @@
 import styles from './main.module.scss'
 
+// Components
+import Image from 'next/image'
+
 // Hooks
 import { useClicker } from '@/shared/hooks/useClicker'
 
@@ -13,11 +16,13 @@ export default function Header() {
     <div className={styles.resources}>
       <div className={styles.resource}>
         <span>{ clicks }</span>
-        <img
-          src="/images/cursor.png"
-          className={styles.icon}
-          alt="Gold"
-        />
+        <div className={styles.icon}>
+          <Image
+            src="/images/cursor.png"
+            alt="Gold"
+            fill
+          />
+        </div>
       </div>
     </div>
   </header>
