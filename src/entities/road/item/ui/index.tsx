@@ -43,7 +43,7 @@ export function Item({
         </p>
         <div className={styles.tags}>
           {(tags || []).map(tag => (
-            <div className={styles.tag}>
+            <div key={tag} className={styles.tag}>
               { tag }
             </div>
           ))}
