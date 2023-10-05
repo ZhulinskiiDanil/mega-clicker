@@ -77,15 +77,19 @@ $contentHeight: 3em;
     }
   }
 
-  img.image {
+  .image {
+    position: relative;
     flex-shrink: 0;
     height: $contentHeight;
     width: 3em;
-    object-fit: contain;
     filter: drop-shadow(0 0 1em rgba(255, 255, 255, 0.6));
 
     user-select: none;
     -webkit-user-drag: none;
+
+    img {
+      object-fit: contain;
+    }
   }
 
   .data {

@@ -45,15 +45,14 @@ $one: calc(1vw + 5vh);
   }
 
   .sparks {
-    position: fixed;
     z-index: -1;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     min-height: 20vh;
     max-height: 30vh;
     aspect-ratio: 16 / 7;
-    object-fit: cover;
     mix-blend-mode: screen;
     user-select: none;
     -webkit-user-drag: none;
@@ -66,6 +65,10 @@ $one: calc(1vw + 5vh);
     );
 
     filter: blur(2px) contrast(400%);
+
+    img {
+      object-fit: cover;
+    }
   }
 
   &::-webkit-scrollbar {

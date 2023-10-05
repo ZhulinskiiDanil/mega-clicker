@@ -1,8 +1,10 @@
 import styles from './main.module.scss'
 
+// Components
+import Image from 'next/image'
+
 // Hooks
 import { useClicker } from '@/shared/hooks/useClicker'
-import { join } from 'path'
 
 type ItemProps = {
   from: number
@@ -22,11 +24,13 @@ export function Item({
       styles.item,
       clicks >= from && styles.active
     ].join(' ')}>
-      <img
-        alt="Item"
-        src={imageURL}
-        className={styles.image}
-      />
+      <div className={styles.image}>
+        <Image
+          alt="Item"
+          src={imageURL}
+          fill
+        />
+      </div>
       <div className={styles.taked}>
         TAKED
       </div>

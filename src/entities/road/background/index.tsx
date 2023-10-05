@@ -18,11 +18,8 @@ export function Background({ scrollProgress }: BackgroundProps) {
     }
   }, [bgRef, scrollProgress])
 
-  return <div ref={bgRef} className={styles.background}>
-    <img
-      alt="Item"
-      src="/images/scrolling-background.jpg"
-      className={styles.image}
-    />
-  </div>
+  return <div
+    ref={bgRef}
+    className={styles.background}
+  ></div>
 }

@@ -1,6 +1,7 @@
 import styles from './main.module.scss'
 
 // Components
+import Image from 'next/image'
 import { Item } from '@/entities/road/item/ui'
 import { Progress } from '@/entities/road/progress/ui'
 import { Background } from '@/entities/road/background'
@@ -47,9 +48,12 @@ export function Road() {
       />
       <Progress from={40} to={60} />
     </div>
-    <img
-      className={styles.sparks}
-      src="/gifs/footer_sparks.gif"
-    />
+    <div className={styles.sparks}>
+      <Image
+        src="/gifs/footer_sparks.gif"
+        alt="Sparks"
+        fill
+      />
+    </div>
   </div>
 }
