@@ -5,6 +5,7 @@ import Image from 'next/image'
 
 // Hooks
 import { useClicker } from '@/shared/hooks/useClicker'
+import { TelegramIcon } from '@/shared/svg'
 
 export default function Header() {
   const { clicks } = useClicker()
@@ -13,6 +14,12 @@ export default function Header() {
     <h1 className={styles.title}>
       Mega Clicker
     </h1>
+    <a className={styles.tg} href="https://t.me/ZhulinskyDanil">
+      <TelegramIcon className={styles.icon} />
+      <div className={styles.value}>
+        <span data-opacity>@</span>ZhulinskyDanil
+      </div>
+    </a>
     <div className={styles.resources}>
       <div className={styles.resource}>
         <span>{ clicks }</span>

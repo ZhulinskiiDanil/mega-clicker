@@ -18,6 +18,9 @@ export function Item({ from }: ItemProps) {
     styles.item,
     clicks >= fromFloor && styles.active
   ].join(' ')}>
+    <div className={styles.from}>
+      { fromFloor }
+    </div>
     <div className={styles.content}>
       <div className={styles.image}>
         <Image
@@ -25,9 +28,6 @@ export function Item({ from }: ItemProps) {
           src="/images/skins/AK47_Vulcan.png"
           fill
         />
-      </div>
-      <div className={styles.from}>
-        { fromFloor }
       </div>
     </div>
     <hr className={styles.line} />

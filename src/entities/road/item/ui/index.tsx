@@ -2,6 +2,7 @@ import styles from './main.module.scss'
 
 // Components
 import Image from 'next/image'
+import { CheckIcon } from '@/shared/svg'
 
 // Hooks
 import { useClicker } from '@/shared/hooks/useClicker'
@@ -32,7 +33,7 @@ export function Item({
         />
       </div>
       <div className={styles.taked}>
-        TAKED
+        <CheckIcon className={styles.icon} />
       </div>
       <div className={styles.data}>
         <p className={styles.title}>

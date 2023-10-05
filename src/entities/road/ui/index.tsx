@@ -16,7 +16,7 @@ export function Road() {
     scrollLeft, scrollWidth
   ) => {
     setScrollProgress(
-      (scrollLeft + window.innerWidth) / scrollWidth
+      scrollLeft / (scrollWidth - window.innerWidth)
     )
   })
 
