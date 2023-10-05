@@ -44,10 +44,13 @@ export function Progress({ from, to }: ProgressProps) {
   
   return <div className={styles.progress}>
     <div className={styles.items}>
-      {Array(10).fill(null).map((item, index) => {
-        const fromActive = from + fromToDiff * (index / 10)
+      {Array(9).fill(null).map((_, index) => {
+        const fromActive = from + fromToDiff * ((index + 1) / 10)
 
-        return <Item key={fromActive || 1} from={fromActive || 1} />
+        return <Item
+          key={fromActive || 1}
+          from={fromActive || 1}
+        />
       })}
     </div>
     <div ref={fillRef} className={[

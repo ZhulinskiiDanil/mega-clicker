@@ -1,4 +1,6 @@
 $one: calc(1vw + 5vh);
+$size: calc($one * 1.2);
+
 .item {
   font-size: calc($one * .5);
   
@@ -11,6 +13,8 @@ $one: calc(1vw + 5vh);
   
   transform: scale(.9);
   opacity: .8;
+
+  width: $size;
 
   transition: 1s ease;
 
@@ -56,12 +60,14 @@ $one: calc(1vw + 5vh);
   }
 
   .content {
+    $borderSize: .06em;
+
     font-size: calc($one * .5);
-    height: 2em;
-    width: 2em;
+    width: calc(100% - $borderSize);
+    aspect-ratio: 1 / 1;
     padding: .3em;
     background: rgba(0, 0, 0, .15);
-    border: 1px solid transparent;
+    border: $borderSize solid transparent;
     transition: 1s ease;
 
     &:hover {

@@ -2,6 +2,8 @@ $one: calc(1vw + 5vh);
 $itemPaddingX: 1em;
 
 .progress {
+  $itemSize: calc($one * 1.2);
+
   display: flex;
   flex-direction: column;
   gap: .4em;
@@ -12,14 +14,14 @@ $itemPaddingX: 1em;
   .items {
     display: flex;
     align-items: center;
-    padding: 0 $itemPaddingX;
+    padding: 0 calc($itemSize / 2);
     gap: 1em;
   }
 
   .fill {
+    $innerWidth: calc(100% + $itemSize);
     $fillProgress: calc(
-      100% * var(--value) + $itemPaddingX * 2 - ($itemPaddingX * 2 * var(--value))
-      + (100% * var(--value)) / var(--itemsCount)
+      $innerWidth * var(--value) - $itemSize / 2
     );
 
     z-index: 0;
@@ -33,7 +35,7 @@ $itemPaddingX: 1em;
     img,
     &::after,
     &::before {
-      transition: 5s cubic-bezier(.06,.6,.07,1);
+      transition: 3s cubic-bezier(.06,.6,.07,1);
     }
 
     &.filled {
@@ -45,7 +47,7 @@ $itemPaddingX: 1em;
     }
 
     &:not(.filled) {
-      &::after, &::before { border-radius: 0 2em 2em 0; }
+      &::after, &::before { border-radius: 0 999em 999em 0; }
     }
 
     &::after {
