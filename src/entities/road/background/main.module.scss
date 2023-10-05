@@ -1,6 +1,7 @@
 $one: calc(1vw + 5vh);
 .background {
   --scrollProgress: 0;
+  --random: random();
 
   position: fixed;
   z-index: -1;
@@ -23,5 +24,43 @@ $one: calc(1vw + 5vh);
   background-repeat: no-repeat;
   background-size: cover;
   
-  transition: 1.5s cubic-bezier(.26, .49, .2, 1);
+  transition:
+    1.5s cubic-bezier(.26, .49, .2, 1) background-position,
+    1s ease transform,
+    1s ease filter
+  ;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      at center center, transparent, #db9f2e
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: .15s ease opacity;
+  }
+
+  &[data-clicked] {
+    transform:
+      scale(calc(1 + .025 * var(--random) + .025))
+      rotate(calc(1deg * var(--random) - .5deg))
+    ;
+    filter: hue-rotate(15deg) grayscale(50%);
+  
+    transition:
+      1.5s cubic-bezier(.26, .49, .2, 1) background-position,
+      .3s ease transform,
+      .1s ease filter
+    ;
+
+    &::after {
+      opacity: calc(.3 * var(--random));
+      transition: .3s ease opacity;
+    }
+  }
 }

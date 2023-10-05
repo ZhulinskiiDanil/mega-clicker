@@ -18,7 +18,7 @@ export default function Header() {
         <span>{ clicks }</span>
         <div className={styles.icon}>
           <Image
-            src="/images/cursor.png"
+            src="/images/money.png"
             alt="Gold"
             fill
           />
