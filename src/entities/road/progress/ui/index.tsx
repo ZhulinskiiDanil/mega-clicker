@@ -53,7 +53,8 @@ export function Progress({ from, to }: ProgressProps) {
     <div ref={fillRef} className={[
       styles.fill,
       moved && value > 0 && styles.moved,
-      value === 1 && styles.filled
+      value === 1 && styles.filled,
+      value <= 0 && styles.zero
     ].join(' ')}>
       <img src="/gifs/sparks.gif" />
       <img src="/gifs/sparks.gif" />
