@@ -21,12 +21,15 @@ export function Progress({ from, to }: ProgressProps) {
   const clicksDiff = clicks - from
   const value = clicks > from ? clicksDiff / fromToDiff : 0
 
+  if (fromToDiff === 4400) {
+    console.log(fromToDiff);
+  }
+  
   useEffect(() => {
-    const fill  = fillRef.current
+    const fillDOM  = fillRef.current
 
-    if (fill) {
-      fill.style.setProperty('--value', String(value > 1 ? 1 : value))
-      fill.style.setProperty('--itemsCount', String(10))
+    if (fillDOM) {
+      fillDOM.style.setProperty('--value', String(value > 1 ? 1 : value).substring(0, 5))
     }
   }, [value, fillRef])
 

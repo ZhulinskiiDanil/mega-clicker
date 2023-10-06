@@ -64,7 +64,7 @@ $one: calc(1vw + 5vh);
       to top, black, transparent
     );
 
-    filter: blur(2px) contrast(400%);
+    filter: contrast(400%);
 
     img {
       object-fit: cover;

@@ -30,23 +30,23 @@ export function Road() {
         imageURL='/images/skins/M4A4_Dawn.png'
         tags={['Редкий', 'Горячее Оружие']}
       />
-      <Progress from={0} to={20} />
+      <Progress from={0} to={100} />
       <Item
-        from={20}
+        from={100}
         title='AK47 Vulcan'
         subtitle='SUB AK47 Vulcan'
         imageURL='/images/skins/AK47_Vulcan.png'
         tags={['Редкий', 'Горячее Оружие']}
       />
-      <Progress from={20} to={40} />
+      <Progress from={100} to={4500} />
       <Item
-        from={40}
+        from={4500}
         title='Нож - Бабочка'
         subtitle='SUB Нож - Бабочка'
         imageURL='/images/skins/butterfly-knife.png'
         tags={['Редкий', 'Холодной оружие']}
       />
-      <Progress from={40} to={60} />
+      <Progress from={4500} to={6000} />
     </div>
     <div className={styles.sparks}>
       <Image

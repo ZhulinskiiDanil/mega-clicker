@@ -23,6 +23,7 @@ $one: calc(1vw + 5vh);
   background-position: calc(100% * var(--scrollProgress)) center;
   background-repeat: no-repeat;
   background-size: cover;
+  will-change: background-position, transform, filter;
   
   transition:
     1.5s cubic-bezier(.26, .49, .2, 1) background-position,

@@ -29,8 +29,7 @@ $size: calc($one * 1.2);
     }
 
     .from {
-      background: #ff8c2e;
-      font-weight: bold;
+      background: #ff9e20;
       opacity: 1;
     }
 
@@ -45,16 +44,15 @@ $size: calc($one * 1.2);
   .from {
     position: absolute;
     z-index: 1;
-    left: 50%;
+    left: 0;
     top: 0;
-    transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(0, -100%, 0);
     
     min-width: 3em;
     padding: .2em .5em;
-    border-radius: 1em;
 
     background: black;
-    font-size: .5em;
+    font-size: .4em;
     opacity: .4;
 
     transition: .3s ease;

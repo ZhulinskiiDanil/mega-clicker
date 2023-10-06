@@ -25,29 +25,34 @@ export function Item({
       styles.item,
       clicks >= from && styles.active
     ].join(' ')}>
-      <div className={styles.image}>
-        <Image
-          alt="Item"
-          src={imageURL}
-          fill
-        />
+      <div className={styles.from}>
+        { from }
       </div>
-      <div className={styles.taked}>
-        <CheckIcon className={styles.icon} />
-      </div>
-      <div className={styles.data}>
-        <p className={styles.title}>
-          { title }
-        </p>
-        <p className={styles.subtitle}>
-          { subtitle }
-        </p>
-        <div className={styles.tags}>
-          {(tags || []).map(tag => (
-            <div key={tag} className={styles.tag}>
-              { tag }
-            </div>
-          ))}
+      <div className={styles.content}>
+        <div className={styles.image}>
+          <Image
+            alt="Item"
+            src={imageURL}
+            fill
+          />
+        </div>
+        <div className={styles.taked}>
+          <CheckIcon className={styles.icon} />
+        </div>
+        <div className={styles.data}>
+          <p className={styles.title}>
+            { title }
+          </p>
+          <p className={styles.subtitle}>
+            { subtitle }
+          </p>
+          <div className={styles.tags}>
+            {(tags || []).map(tag => (
+              <div key={tag} className={styles.tag}>
+                { tag }
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
