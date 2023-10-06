@@ -1,5 +1,8 @@
 import styles from './main.module.scss'
 
+// Types
+import { RootState } from '@/app/store'
+
 // Components
 import Image from 'next/image'
 import { Item } from '@/entities/road/item/ui'
@@ -8,9 +11,14 @@ import { Background } from '@/entities/road/background'
 
 // Hooks
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useClickableScroll } from '@/shared/hooks/useClickableScroll'
+import { ProgressInfo } from '@/entities/progressInfo/ui'
 
 export function Road() {
+  const items = useSelector((state: RootState) => (
+    state.items.value || []
+  ))
   const [scrollProgress, setScrollProgress] = useState(0)
   const scrollRef = useClickableScroll<HTMLDivElement>((
     scrollLeft, scrollWidth
@@ -20,33 +28,31 @@ export function Road() {
     )
   })
 
+  const itemsList = items.map(item => (
+    item.type === "item" ? (
+      <Item
+        key={item.value.id}
+        from={item.value.from || 0}
+        title={item.value.title}
+        subtitle={item.value.subtitle}
+        imageURL={item.value.imageURL}
+        tags={item.value.tags}
+      />
+    ) : (
+      <Progress
+        key={item.value.id}
+        items={item.value.items || []}
+        from={item.value?.from || 0}
+        to={item.value?.to || 0}
+      />
+    )
+  ))
+
   return <div ref={scrollRef} className={styles.road}>
     <Background scrollProgress={scrollProgress} />
+    <ProgressInfo />
     <div className={styles.content}>
-      <Item
-        from={1}
-        title='M4A4 Dawn'
-        subtitle='SUB M4A4 Dawn'
-        imageURL='/images/skins/M4A4_Dawn.png'
-        tags={['Редкий', 'Горячее Оружие']}
-      />
-      <Progress from={0} to={100} />
-      <Item
-        from={100}
-        title='AK47 Vulcan'
-        subtitle='SUB AK47 Vulcan'
-        imageURL='/images/skins/AK47_Vulcan.png'
-        tags={['Редкий', 'Горячее Оружие']}
-      />
-      <Progress from={100} to={4500} />
-      <Item
-        from={4500}
-        title='Нож - Бабочка'
-        subtitle='SUB Нож - Бабочка'
-        imageURL='/images/skins/butterfly-knife.png'
-        tags={['Редкий', 'Холодной оружие']}
-      />
-      <Progress from={4500} to={6000} />
+      { itemsList }
     </div>
     <div className={styles.sparks}>
       <Image

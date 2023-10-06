@@ -13,7 +13,7 @@ type ItemProps = {
 export function Item({ from }: ItemProps) {
   const { clicks } = useClicker()
   const fromFloor = Math.floor(from)
-
+  
   return <div className={[
     styles.item,
     clicks >= fromFloor && styles.active

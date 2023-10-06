@@ -1,0 +1,40 @@
+$one: calc(1vw + 5vh);
+
+.progressBar {
+  font-size: calc($one * .5);
+
+  display: flex;
+  flex-direction: column;
+  gap: .15em;
+
+  .data {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: .4em;
+
+    > :last-child {
+      color: #ffb833;
+    }
+  }
+
+  .bar {
+    position: relative;
+    height: .2em;
+    width: 100%;
+    background: rgba(0, 0, 0, .4);
+    overflow: hidden;
+
+    .fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: calc(100% * var(--value));
+      background: linear-gradient(
+        to right, #ffb833, #ffd17d
+      );
+      transition: .3s cubic-bezier(0.06, 0.6, 0.07, 1);
+    }
+  }
+}

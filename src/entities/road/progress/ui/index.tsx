@@ -1,6 +1,9 @@
 import styles from './main.module.scss'
 
 // Components
+import { IItem } from '@/app/store'
+
+// Components
 import { Item } from '@/entities/road/progress/item/ui'
 
 // Hooks
@@ -8,11 +11,12 @@ import { useEffect, useRef, useState } from 'react'
 import { useClicker } from '@/shared/hooks/useClicker'
 
 type ProgressProps = {
+  items: IItem[]
   from: number
   to: number
 }
 
-export function Progress({ from, to }: ProgressProps) {
+export function Progress({ items, from, to }: ProgressProps) {
   const { clicks } = useClicker()
   const fillRef = useRef<null | HTMLDivElement>(null)
   const [moved, setMoved] = useState(false)
@@ -21,10 +25,6 @@ export function Progress({ from, to }: ProgressProps) {
   const clicksDiff = clicks - from
   const value = clicks > from ? clicksDiff / fromToDiff : 0
 
-  if (fromToDiff === 4400) {
-    console.log(fromToDiff);
-  }
-  
   useEffect(() => {
     const fillDOM  = fillRef.current
 
@@ -45,10 +45,11 @@ export function Progress({ from, to }: ProgressProps) {
     }
   }, [clicks])
   
+  if (!items?.length) return <></>
   return <div className={styles.progress}>
     <div className={styles.items}>
-      {Array(9).fill(null).map((_, index) => {
-        const fromActive = from + fromToDiff * ((index + 1) / 10)
+      {items.map((_, index) => {
+        const fromActive = from + fromToDiff * ((index + 1) / (items.length + 1))
 
         return <Item
           key={fromActive || 1}
