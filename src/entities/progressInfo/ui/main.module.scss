@@ -16,6 +16,15 @@ $one: calc(1vw + 5vh);
   margin-right: .4em;
   background: rgba(0, 0, 0, .4);
   backdrop-filter: blur(10px);
+  transition: .5s cubic-bezier(.52, -0.25, .28, .97);
+
+  &.hidden {
+    right: 0;
+    margin: 0;
+    transform: translate3d(100%, -50%, 0);
+    opacity: 0;
+    transition: .5s cubic-bezier(.52, -0.25, .28, .97) .3s;
+  }
 
   .currentItem {
     display: flex;

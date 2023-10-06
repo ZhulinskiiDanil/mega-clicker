@@ -10,9 +10,13 @@ import { useClicker } from '@/shared/hooks/useClicker'
 type ProgressBarProps = {
   prevItem: IItem | null
   nextItem: IItem | null
+  onFilled?: Function,
+  onItem?: Function
 }
 
-export function ProgressBar({ prevItem, nextItem }: ProgressBarProps) {
+export function ProgressBar({
+  prevItem, nextItem, onFilled, onItem
+}: ProgressBarProps) {
   const { clicks } = useClicker()
   const [prev, setPrev] = useState(prevItem)
   const [next, setNext] = useState(nextItem)
@@ -22,13 +26,14 @@ export function ProgressBar({ prevItem, nextItem }: ProgressBarProps) {
   const to = parseFloat(next?.from + '') || 0
   const fromToDiff = Math.abs(from - to)
   const clicksDiff = clicks > from ? to - clicks : 0
+  const fillValue = clicks > from ? 1 - clicksDiff / fromToDiff : 0
 
   useEffect(() => {
     const fillDOM = fillRef.current
     
     if (fillDOM) {
       fillDOM.style.setProperty('--value', String(
-        clicks > from ? 1 - clicksDiff / fromToDiff : 0
+        fillValue
       ).substring(0, 4))
     }
   }, [fillRef, clicksDiff, fromToDiff])
@@ -39,6 +44,24 @@ export function ProgressBar({ prevItem, nextItem }: ProgressBarProps) {
       setNext(nextItem)
     }, 1500)
   }, [prevItem, nextItem])
+
+  useEffect(() => {
+    if (fillValue >= 1) {
+      if (onFilled instanceof Function) {
+        onFilled()
+      }
+    }
+    
+    const timeout = setTimeout(() => {
+      if (onItem instanceof Function) {
+        onItem()
+      }
+    }, 1500)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [onFilled, onItem, fillValue >= 1, next?.id])
 
   return <div className={styles.progressBar}>
     <div className={styles.data}>
