@@ -1,0 +1,40 @@
+$one: calc(1vw + 5vh);
+
+.ldm {
+  font-size: calc($one * .5);
+
+  display: flex;
+  align-items: center;
+  gap: .2em;
+
+  cursor: pointer;
+
+  &:has(input:checked) {
+    .checkbox {
+      background: #ffbc65;
+      transform: scale(.9);
+    }
+  }
+  
+  input {
+    display: none;
+  }
+
+  p {
+    font-size: .5em;
+  }
+
+  .checkbox {
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .4);
+    border: 1px solid #ffbc65;
+    transition: .2s ease;
+
+    &:active {
+      transform: scale(.8);
+      transition: 0s;
+    }
+  }
+}

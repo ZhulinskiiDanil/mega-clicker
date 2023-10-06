@@ -10,6 +10,14 @@ $itemPaddingX: 1em;
 
   flex-shrink: 0;
   font-size: calc($one * .5);
+
+  &[data-ldm] {
+    .fill {
+      img {
+        display: none !important;
+      }
+    }
+  }
   
   .items {
     display: flex;
@@ -59,7 +67,7 @@ $itemPaddingX: 1em;
       height: 100%;
       width: 0;
       background: linear-gradient(
-        to top, #ffac5f, #b44320
+        to top, #ffac5f, #e77c35
       );
     }
 

@@ -3,14 +3,16 @@ import styles from './main.module.scss'
 // Hooks
 import { useEffect, useRef } from 'react'
 import { useClicker } from '@/shared/hooks/useClicker'
+import { useLDM } from '@/shared/hooks/useLDM'
 
 type BackgroundProps = {
   scrollProgress: number
 }
 
 export function Background({ scrollProgress }: BackgroundProps) {
-  const bgRef = useRef<null | HTMLDivElement>(null)
+  const { ldm } = useLDM()
   const { clicks } = useClicker()
+  const bgRef = useRef<null | HTMLDivElement>(null)
 
   function afterElementMounted(
     cb: (elm: NonNullable<typeof bgRef.current>) => any
@@ -30,19 +32,28 @@ export function Background({ scrollProgress }: BackgroundProps) {
     let timeout = setTimeout(() => {}, 0)
 
     afterElementMounted(elm => {
-      elm.setAttribute('data-clicked', '')
-      elm.style.setProperty('--random', String(Math.random()))
-
-      timeout = setTimeout(() => {
+      if (ldm) {
+        elm.setAttribute('data-ldm', '')
         elm.removeAttribute('data-clicked')
-        elm.style.removeProperty('--random')
-      }, 150) // 0.15s
+      } else {
+        elm.removeAttribute('data-ldm')
+      }
+
+      if (!ldm) {
+        elm.setAttribute('data-clicked', '')
+        elm.style.setProperty('--random', String(Math.random()))
+  
+        timeout = setTimeout(() => {
+          elm.removeAttribute('data-clicked')
+          elm.style.removeProperty('--random')
+        }, 150) // 0.15s
+      }
     })
 
     return () => {
       clearTimeout(timeout)
     }
-  }, [clicks])
+  }, [clicks, ldm])
 
   return <div
     ref={bgRef}

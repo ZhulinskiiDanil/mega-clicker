@@ -13,6 +13,7 @@ $one: calc(1vw + 5vh);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1em;
 
   text-align: center;
   background: linear-gradient(
@@ -99,6 +100,7 @@ $one: calc(1vw + 5vh);
   .resources {
     display: flex;
     align-items: center;
+    margin-left: auto;
     gap: 2em;
     
     .resource {

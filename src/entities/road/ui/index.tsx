@@ -8,14 +8,18 @@ import Image from 'next/image'
 import { Item } from '@/entities/road/item/ui'
 import { Progress } from '@/entities/road/progress/ui'
 import { Background } from '@/entities/road/background'
-
-// Hooks
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useClickableScroll } from '@/shared/hooks/useClickableScroll'
 import { ProgressInfo } from '@/entities/progressInfo/ui'
 
+// Hooks
+import { useLDM } from '@/shared/hooks/useLDM'
+import { useState } from 'react'
+import { useClickableScroll } from '@/shared/hooks/useClickableScroll'
+
+// Redux
+import { useSelector } from 'react-redux'
+
 export function Road() {
+  const { ldm } = useLDM()
   const items = useSelector((state: RootState) => (
     state.items.value || []
   ))
@@ -54,12 +58,14 @@ export function Road() {
     <div className={styles.content}>
       { itemsList }
     </div>
-    <div className={styles.sparks}>
-      <Image
-        src="/gifs/footer_sparks.gif"
-        alt="Sparks"
-        fill
-      />
-    </div>
+    {!ldm && (
+      <div className={styles.sparks}>
+        <Image
+          src="/gifs/footer_sparks.gif"
+          alt="Sparks"
+          fill
+        />
+      </div>
+    )}
   </div>
 }

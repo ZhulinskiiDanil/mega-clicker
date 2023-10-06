@@ -31,7 +31,11 @@ $one: calc(1vw + 5vh);
     1s ease filter
   ;
 
-  &::after {
+  &[data-ldm] {
+    transition: .1s cubic-bezier(.26, .49, .2, 1) background-position !important;
+  }
+
+  &::after:not([data-ldm]) {
     content: '';
     position: absolute;
     left: 0;

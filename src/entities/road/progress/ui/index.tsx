@@ -9,6 +9,7 @@ import { Item } from '@/entities/road/progress/item/ui'
 // Hooks
 import { useEffect, useRef, useState } from 'react'
 import { useClicker } from '@/shared/hooks/useClicker'
+import { useLDM } from '@/shared/hooks/useLDM'
 
 type ProgressProps = {
   items: IItem[]
@@ -17,9 +18,11 @@ type ProgressProps = {
 }
 
 export function Progress({ items, from, to }: ProgressProps) {
+  const { ldm } = useLDM()
   const { clicks } = useClicker()
-  const fillRef = useRef<null | HTMLDivElement>(null)
   const [moved, setMoved] = useState(false)
+  const parentRef = useRef<null | HTMLDivElement>(null)
+  const fillRef = useRef<null | HTMLDivElement>(null)
 
   const fromToDiff = Math.abs(from - to)
   const clicksDiff = clicks - from
@@ -27,11 +30,18 @@ export function Progress({ items, from, to }: ProgressProps) {
 
   useEffect(() => {
     const fillDOM  = fillRef.current
+    const parentDOM = parentRef.current
+
+    if (ldm && parentDOM) {
+      parentDOM.setAttribute("data-ldm", "")
+    } else if (parentDOM) {
+      parentDOM.removeAttribute("data-ldm")
+    }
 
     if (fillDOM) {
       fillDOM.style.setProperty('--value', String(value > 1 ? 1 : value).substring(0, 5))
     }
-  }, [value, fillRef])
+  }, [value, fillRef, ldm])
 
   useEffect(() => {
     setMoved(true)
@@ -46,7 +56,7 @@ export function Progress({ items, from, to }: ProgressProps) {
   }, [clicks])
   
   if (!items?.length) return <></>
-  return <div className={styles.progress}>
+  return <div ref={parentRef} className={styles.progress}>
     <div className={styles.items}>
       {items.map((_, index) => {
         const fromActive = from + fromToDiff * ((index + 1) / (items.length + 1))

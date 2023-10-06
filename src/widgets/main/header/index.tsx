@@ -6,6 +6,7 @@ import Image from 'next/image'
 // Hooks
 import { useClicker } from '@/shared/hooks/useClicker'
 import { TelegramIcon } from '@/shared/svg'
+import { LDM } from './LDM/ui'
 
 export default function Header() {
   const { clicks } = useClicker()
@@ -31,6 +32,9 @@ export default function Header() {
           />
         </div>
       </div>
+    </div>
+    <div className={styles.tools}>
+      <LDM />
     </div>
   </header>
 }
